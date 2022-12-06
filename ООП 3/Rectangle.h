@@ -11,7 +11,9 @@ public:
 	~Rectangle() = default;
 
 	void setP1(const point_t& p1);
+	void setP1(const double& x, const double& y);
 	void setP2(const point_t& p2);
+	void setP2(const double& x, const double& y);
 	
 	point_t getP1()const;
 	point_t getP2()const;
@@ -26,6 +28,7 @@ public:
 private:
 	point_t p1_;
 	point_t p2_;
+
 	point_t getCenter()const;
 	void checkRectangle()const;
 };

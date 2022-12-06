@@ -12,10 +12,24 @@ void Rectangle::setP1(const point_t& p1)
 	checkRectangle();
 }
 
+void Rectangle::setP1(const double& x, const double& y)
+{
+	p1_.x = x;
+	p1_.y = y;
+	checkRectangle();
+}
+
 void Rectangle::setP2(const point_t& p2)
 {
 	p2_.x = p2.x;
 	p2_.y = p2.y;
+	checkRectangle();
+}
+
+void Rectangle::setP2(const double& x, const double& y)
+{
+	p2_.x = x;
+	p2_.y = y;
 	checkRectangle();
 }
 
