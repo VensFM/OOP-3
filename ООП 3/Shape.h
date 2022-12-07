@@ -8,7 +8,7 @@ class Shape
 {
 public:
 	virtual ~Shape() = default;
-	virtual std::string getName() = 0;
+	virtual std::string getName()const = 0;
 	virtual double getArea()const = 0;
 	virtual rectangle_t getFrameRect()const = 0;
 	virtual void move(const point_t& newPos) = 0;
@@ -16,4 +16,5 @@ public:
 	virtual void scale(const double& k) = 0;
 	virtual void scale(const point_t& p, const double& k) = 0;
 	virtual Shape* clone()const = 0;
+	friend std::ostream& operator << (std::ostream& stream, const Shape* shape);
 };

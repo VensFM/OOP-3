@@ -17,7 +17,8 @@ public:
 	point_t getP1()const;
 	point_t getP2()const;
 
-	std::string getName()override;
+	void print()const;
+	std::string getName()const override;
 	double getArea()const override;
 	rectangle_t getFrameRect()const override;
 	void move(const point_t&  newPos)override;

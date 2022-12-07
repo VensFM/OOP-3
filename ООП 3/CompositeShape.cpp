@@ -43,8 +43,12 @@ void CompositeShape::add(const int& i, Shape* newShape)
 {
 	ptr_[i] = newShape;
 }
+void CompositeShape::print()const
+{
+	std::cout << this;
+}
 
-std::string CompositeShape::getName()
+std::string CompositeShape::getName()const
 {
 	return "COMPOSITE SHAPE";
 }
@@ -118,7 +122,7 @@ void CompositeShape::scale(const double& k)
 {
 	if (k <= 0)
 	{
-		std::cerr << "\n	Invalid coef" << std::endl;
+		std::cerr << "\n	Invalid coef\n";
 		return;
 	}
 	point_t pos = getFrameRect().pos;
@@ -136,7 +140,7 @@ void CompositeShape::scale(const point_t& p, const double& k)
 {
 	if (k <= 0)
 	{
-		std::cerr << "\n	Invalid coef" << std::endl;
+		std::cerr << "\n	Invalid coef\n";
 		return;
 	}
 	for (int i = 0; i < size_; ++i)

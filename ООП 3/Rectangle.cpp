@@ -43,7 +43,12 @@ point_t Rectangle::getP2()const
 	return p2_;
 }
 
-std::string Rectangle::getName()
+void Rectangle::print()const
+{
+	std::cout << this;
+}
+
+std::string Rectangle::getName()const
 {
 	return "RECTANGLE";
 }
@@ -85,7 +90,7 @@ void Rectangle::scale(const double& k)
 {
 	if (k == 0)
 	{
-		std::cerr << "\n	Invalid coef" << std::endl;
+		std::cerr << "\n	Invalid coef\n";
 		return;
 	}
 	point_t buf = getCenter();
@@ -99,7 +104,7 @@ void Rectangle::scale(const point_t& p, const double& k)
 {
 	if (k <= 0)
 	{
-		std::cerr << "\n	Invalid coef" << std::endl;
+		std::cerr << "\n	Invalid coef\n";
 		return;
 	}
 	point_t buf = getCenter();
@@ -143,7 +148,7 @@ void Rectangle::checkRectangle()const
 {
 	if (p1_.x == p2_.x || p1_.y == p2_.y)
 	{
-		std::cerr << "\n	Invalid data, two points can't lie on the same line: " << this << std::endl;
+		std::cerr << "\n	Invalid data, two points can't lie on the same line\n";
 		return;
 	}
 }

@@ -72,8 +72,12 @@ double Rectapezium::getHeight()const
 {
 	return height_;
 }
+void Rectapezium::print()const
+{
+	std::cout << this;
+}
 
-std::string Rectapezium::getName()
+std::string Rectapezium::getName()const
 {
 	return "RECTAPEZIUM";
 }
@@ -129,7 +133,7 @@ void Rectapezium::scale(const double& k)
 {
 	if (k == 0)
 	{
-		std::cerr << "\n	Invalid coef" << std::endl;
+		std::cerr << "\n	Invalid coef\n";
 		return;
 	}
 	point_t buf = getCenter();
@@ -144,7 +148,7 @@ void Rectapezium::scale(const point_t& p, const double& k)
 {
 	if (k <= 0)
 	{
-		std::cerr << "\n	Invalid coef" << std::endl;
+		std::cerr << "\n	Invalid coef\n";
 		return;
 	}
 	point_t buf = getCenter();
@@ -169,12 +173,12 @@ void Rectapezium::checkRectapezium()const
 {
 	if (lowerBase_ == 0 || upperBase_ == 0 || height_ == 0)
 	{
-		std::cerr << "\n	Invalid data, last three values can't be zero: " << this << std::endl;
+		std::cerr << "\n	Invalid data, last three values can't be zero\n";
 		return;
 	}
 	if ((lowerBase_ < 0 && upperBase_ > 0) || (lowerBase_ > 0 && upperBase_ < 0))
 	{
-		std::cerr << "\n	Invalid data, upperBase and lowerBase must be of the same character: " << this << std::endl;
+		std::cerr << "\n	Invalid data, upperBase and lowerBase must be of the same character\n";
 		return;
 	}
 }
