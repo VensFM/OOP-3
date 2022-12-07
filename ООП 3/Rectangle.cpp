@@ -85,7 +85,7 @@ void Rectangle::scale(const double& k)
 {
 	if (k == 0)
 	{
-		std::cerr<<"\n	Invalid coef" << std::endl;
+		std::cerr << "\n	Invalid coef" << std::endl;
 		return;
 	}
 	point_t buf = getCenter();
@@ -93,6 +93,20 @@ void Rectangle::scale(const double& k)
 	p2_.x = buf.x - ((buf.x - p2_.x) * k);
 	p1_.y = buf.y - ((buf.y - p1_.y) * k);
 	p2_.y = buf.y - ((buf.y - p2_.y) * k);
+}
+
+void Rectangle::scale(const point_t& p, const double& k)
+{
+	if (k <= 0)
+	{
+		std::cerr << "\n	Invalid coef" << std::endl;
+		return;
+	}
+	point_t buf = getCenter();
+	double moveX = p.x + (buf.x - p.x) * k;
+	double moveY = p.y + (buf.y - p.y) * k;
+	this->move(moveX, moveY);
+	this->scale(k);
 }
 
 Shape* Rectangle::clone()const 

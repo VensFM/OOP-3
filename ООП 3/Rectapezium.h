@@ -26,6 +26,7 @@ public:
 	void move(const point_t& newPos)override;
 	void move(const double& moveX, const double& moveY)override;
 	void scale(const double& k)override;
+	void scale(const point_t& p, const double& k)override;
 	Shape* clone()const override;
 private:
 	point_t pos_;
