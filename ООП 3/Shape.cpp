@@ -10,3 +10,8 @@ std::ostream& operator << (std::ostream& stream, const Shape* shape)
 	stream << ")  Right top point: (" << std::round((buf.x + 0.5 * width)*10)/10 << ", " << std::round((buf.y + 0.5 * height)*10)/10<<")\n";
 	return stream;
 }
+
+bool Shape::operator < (const Shape* shape)
+{
+	return this->getArea() < shape->getArea();
+}
