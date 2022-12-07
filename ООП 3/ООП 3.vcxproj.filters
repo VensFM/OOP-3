@@ -24,6 +24,9 @@
     <ClCompile Include="Rectapezium.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="CompositeShape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base-types.h">
@@ -36,6 +39,9 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Rectapezium.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeShape.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
