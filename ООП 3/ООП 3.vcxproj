@@ -152,6 +152,9 @@
     <ClInclude Include="Rectapezium.h" />
     <ClInclude Include="Shape.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="oop3.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
