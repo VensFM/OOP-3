@@ -85,8 +85,8 @@ void Rectangle::scale(const double& k)
 {
 	if (k == 0)
 	{
-		std::cerr<<"	Invalid coef";
-		exit(-1);
+		std::cerr<<"\n	Invalid coef" << std::endl;
+		return;
 	}
 	point_t buf = getCenter();
 	p1_.x = buf.x - ((buf.x - p1_.x) * k);
@@ -95,7 +95,7 @@ void Rectangle::scale(const double& k)
 	p2_.y = buf.y - ((buf.y - p2_.y) * k);
 }
 
-Shape* Rectangle::clone()
+Shape* Rectangle::clone()const 
 {
 	Shape* ptr = new Rectangle(this->p1_, this->p2_);
 	return ptr;
@@ -129,7 +129,7 @@ void Rectangle::checkRectangle()const
 {
 	if (p1_.x == p2_.x || p1_.y == p2_.y)
 	{
-		std::cerr << "	Invalid data, two points can't lie on the same line: "<<this;
-		exit(-1);
+		std::cerr << "\n	Invalid data, two points can't lie on the same line: " << this << std::endl;
+		return;
 	}
 }

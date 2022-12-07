@@ -8,7 +8,6 @@ public:
 	Rectangle(const double& p1x, const double& p1y, const double& p2x, const double& p2y);
 	Rectangle(const point_t& p1, const point_t& p2);
 	Rectangle(const Rectangle& rect);
-	~Rectangle() = default;
 
 	void setP1(const point_t& p1);
 	void setP1(const double& x, const double& y);
@@ -24,7 +23,7 @@ public:
 	void move(const point_t&  newPos)override;
 	void move(const double& moveX, const double& moveY)override;
 	void scale(const double& k)override;
-	Shape* clone()override;
+	Shape* clone()const override;
 private:
 	point_t p1_;
 	point_t p2_;

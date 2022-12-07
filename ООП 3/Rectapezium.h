@@ -8,7 +8,6 @@ public:
 	Rectapezium(const double& x, const double& y, const double& lowerBase, const double& upperBase, const double& height);
 	Rectapezium(const point_t& p, const double& lowerBase, const double& upperBase, const double& height);
 	Rectapezium(const Rectapezium& rect);
-	~Rectapezium() = default;
 
 	void setPos(const point_t& p);
 	void setPos(const double& x, const double& y);
@@ -27,7 +26,7 @@ public:
 	void move(const point_t& newPos)override;
 	void move(const double& moveX, const double& moveY)override;
 	void scale(const double& k)override;
-	Shape* clone()override;
+	Shape* clone()const override;
 private:
 	point_t pos_;
 	double lowerBase_;

@@ -1,7 +1,32 @@
 #include "CompositeShape.h"
 
 CompositeShape::CompositeShape() : ptr_(nullptr), size_(0) {}
-CompositeShape::CompositeShape(const int& size) : size_(size), ptr_(new Shape*[size]) {}
+CompositeShape::CompositeShape(const int& size) : size_(size), ptr_(new Shape* [size] {nullptr}) {}
+CompositeShape::CompositeShape(const CompositeShape& cShape)
+{
+	this->size_ = cShape.size_;
+	this->ptr_ = new Shape * [size_];
+	for (int i = 0; i < size_; ++i)
+	{
+		this->ptr_[i] = cShape.ptr_[i];
+	}
+}
+//CompositeShape::CompositeShape(CompositeShape&& cShape)
+//{
+//	this->size_ = cShape.size_;
+//	this->ptr_ = cShape.ptr_;
+//	cShape.size_ = 0;
+//	cShape.ptr_ = nullptr;
+//}
+CompositeShape::CompositeShape(const CompositeShape* cShape)
+{
+	this->size_ = cShape->size_;
+	this->ptr_ = new Shape * [size_];
+	for (int i = 0; i < size_; ++i)
+	{
+		this->ptr_[i] = cShape->ptr_[i];
+	}
+}
 CompositeShape::~CompositeShape()
 {
 	if (ptr_ != nullptr)
@@ -14,7 +39,12 @@ CompositeShape::~CompositeShape()
 	}
 }
 
-std::string CompositeShape::getName()const
+void CompositeShape::add(const int& i, Shape* newShape)
+{
+	ptr_[i] = newShape;
+}
+
+std::string CompositeShape::getName()
 {
 	return "COMPOSITE SHAPE";
 }
@@ -86,8 +116,13 @@ void CompositeShape::move(const double& x, const double& y)
 
 void CompositeShape::scale(const double& k)
 {
+	if (k <= 0)
+	{
+		std::cerr << "\n	Invalid coef" << std::endl;
+		return;
+	}
 	point_t pos = getFrameRect().pos;
-	for (int i = 0; i < size_; i++)
+	for (int i = 0; i < size_; ++i)
 	{
 		point_t shapePos = ptr_[i]->getFrameRect().pos;
 		double moveX = pos.x + (shapePos.x - pos.x) * k;
@@ -95,4 +130,26 @@ void CompositeShape::scale(const double& k)
 		ptr_[i]->move(moveX, moveY);
 		ptr_[i]->scale(k);
 	}
+}
+
+void CompositeShape::scale(const point_t& p, const double& k)
+{
+	if (k <= 0)
+	{
+		std::cerr << "\n	Invalid coef" << std::endl;
+		return;
+	}
+	for (int i = 0; i < size_; ++i)
+	{
+		point_t shapePos = ptr_[i]->getFrameRect().pos;
+		double moveX = p.x + (shapePos.x - p.x) * k;
+		double moveY = p.y + (shapePos.y - p.y) * k;
+		ptr_[i]->move(moveX, moveY);
+		ptr_[i]->scale(k);
+	}
+}
+
+Shape* CompositeShape::clone()const
+{
+	return new CompositeShape(this);
 }

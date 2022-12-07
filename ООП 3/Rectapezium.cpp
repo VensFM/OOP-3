@@ -129,8 +129,8 @@ void Rectapezium::scale(const double& k)
 {
 	if (k == 0)
 	{
-		std::cerr << "	Invalid coef";
-		exit(-1);
+		std::cerr << "\n	Invalid coef" << std::endl;
+		return;
 	}
 	point_t buf = getCenter();
 	pos_.x = buf.x - ((buf.x - pos_.x) * k);
@@ -140,7 +140,7 @@ void Rectapezium::scale(const double& k)
 	height_ *= k;
 }
 
-Shape* Rectapezium::clone()
+Shape* Rectapezium::clone()const
 {
 	Shape* ptr = new Rectapezium(this->pos_, this->lowerBase_, this->upperBase_, this->height_);
 	return ptr;
@@ -155,12 +155,12 @@ void Rectapezium::checkRectapezium()const
 {
 	if (lowerBase_ == 0 || upperBase_ == 0 || height_ == 0)
 	{
-		std::cerr << "	Invalid data, last three values can't be zero: " << this;
-		exit(-1);
+		std::cerr << "\n	Invalid data, last three values can't be zero: " << this << std::endl;
+		return;
 	}
 	if ((lowerBase_ < 0 && upperBase_ > 0) || (lowerBase_ > 0 && upperBase_ < 0))
 	{
-		std::cerr << "	Invalid data, upperBase and lowerBase must be of the same character: " << this;
-		exit(-1);
+		std::cerr << "\n	Invalid data, upperBase and lowerBase must be of the same character: " << this << std::endl;
+		return;
 	}
 }
