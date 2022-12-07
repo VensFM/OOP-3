@@ -78,7 +78,7 @@ void CompositeShape::move(const point_t& pos)
 
 void CompositeShape::move(const double& x, const double& y)
 {
-	for (size_t i = 0; i < size_; i++)
+	for (int i = 0; i < size_; i++)
 	{
 		ptr_[i]->move(x, y);
 	}
@@ -87,7 +87,7 @@ void CompositeShape::move(const double& x, const double& y)
 void CompositeShape::scale(const double& k)
 {
 	point_t pos = getFrameRect().pos;
-	for (size_t i = 0; i < size_; i++)
+	for (int i = 0; i < size_; i++)
 	{
 		point_t shapePos = ptr_[i]->getFrameRect().pos;
 		double moveX = pos.x + (shapePos.x - pos.x) * k;
