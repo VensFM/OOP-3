@@ -14,3 +14,7 @@ CompositeShape::~CompositeShape()
 	}
 }
 
+std::string CompositeShape::getName()const
+{
+	return "COMPOSITE SHAPE";
+}
