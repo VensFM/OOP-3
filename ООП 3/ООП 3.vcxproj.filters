@@ -49,7 +49,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="oop3.txt">
+    <Text Include="input.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

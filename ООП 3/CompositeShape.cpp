@@ -43,9 +43,36 @@ void CompositeShape::add(const int& i, Shape* newShape)
 {
 	ptr_[i] = newShape;
 }
+
 void CompositeShape::print()const
 {
 	std::cout << this;
+}
+
+bool CompositeShape::isEmpty(const int k)const
+{
+	if (ptr_[k] == NULL)
+	{
+		return true;
+	}
+	return false;
+}
+
+void CompositeShape::sort()
+{
+	Shape* buf;
+	for (int i = 0; i < size_ - 1; ++i)
+	{
+		for (int j = size_ - 1; j > i; --j)
+		{
+			if (ptr_[j] < ptr_[j - 1])
+			{
+				buf = ptr_[j];
+				ptr_[j] = ptr_[j - 1];
+				ptr_[j - 1] = buf;
+			}
+		}
+	}
 }
 
 std::string CompositeShape::getName()const

@@ -9,14 +9,12 @@ Rectapezium::Rectapezium(const double& x, const double& y, const double& lowerBa
 	pos_(x, y), 
 	lowerBase_(lowerBase), 
 	upperBase_(upperBase), 
-	height_(height) 
-{ checkRectapezium(); }
+	height_(height) {}
 Rectapezium::Rectapezium(const point_t& p, const double& lowerBase, const double& upperBase, const double& height) :
 	pos_(p),
 	lowerBase_(lowerBase),
 	upperBase_(upperBase),
-	height_(height)
-{ checkRectapezium(); }
+	height_(height) {}
 Rectapezium::Rectapezium(const Rectapezium& rect) :
 	pos_(rect.pos_),
 	lowerBase_(rect.lowerBase_),
@@ -72,9 +70,19 @@ double Rectapezium::getHeight()const
 {
 	return height_;
 }
+
 void Rectapezium::print()const
 {
 	std::cout << this;
+}
+
+void Rectapezium::cleanValue(const int k)
+{
+	pos_.x = std::round(pos_.x * std::pow(10, k)) / std::pow(10, k);
+	pos_.y = std::round(pos_.y * std::pow(10, k)) / std::pow(10, k);
+	lowerBase_ = std::round(lowerBase_ * std::pow(10, k)) / std::pow(10, k);
+	upperBase_ = std::round(upperBase_ * std::pow(10, k)) / std::pow(10, k);
+	height_ = std::round(height_ * std::pow(10, k)) / std::pow(10, k);
 }
 
 std::string Rectapezium::getName()const
@@ -164,21 +172,30 @@ Shape* Rectapezium::clone()const
 	return ptr;
 }
 
-point_t Rectapezium::getCenter()const
-{
-	return { pos_.x + (0.25 * (lowerBase_ + upperBase_)), pos_.y + (0.5 * height_) };
-}
-
-void Rectapezium::checkRectapezium()const
+bool Rectapezium::checkRectapezium()const
 {
 	if (lowerBase_ == 0 || upperBase_ == 0 || height_ == 0)
 	{
-		std::cerr << "\n	Invalid data, last three values can't be zero\n";
-		return;
+		system("cls");
+		std::cerr << "			!!!ERROR!!!\n	Invalid data, last three values can't be zero: \n";
+		this->print();
+		system("pause");
+		system("cls");
+		return 0;
 	}
 	if ((lowerBase_ < 0 && upperBase_ > 0) || (lowerBase_ > 0 && upperBase_ < 0))
 	{
-		std::cerr << "\n	Invalid data, upperBase and lowerBase must be of the same character\n";
-		return;
+		system("cls");
+		std::cerr << "			!!!ERROR!!!\n	Invalid data, upperBase and lowerBase must be of the same character: \n";
+		this->print();
+		system("pause");
+		system("cls");
+		return 0;
 	}
+	return 1;
+}
+
+point_t Rectapezium::getCenter()const
+{
+	return { pos_.x + (0.25 * (lowerBase_ + upperBase_)), pos_.y + (0.5 * height_) };
 }

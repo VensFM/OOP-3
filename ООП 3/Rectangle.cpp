@@ -1,8 +1,8 @@
 #include "Rectangle.h"
 
 Rectangle::Rectangle() : p1_(), p2_() {}
-Rectangle::Rectangle(const double& p1x, const double& p1y, const double& p2x, const double& p2y) : p1_(p1x, p1y), p2_(p2x, p2y) { checkRectangle(); }
-Rectangle::Rectangle(const point_t& p1, const point_t& p2) : p1_(p1), p2_(p2) { checkRectangle(); }
+Rectangle::Rectangle(const double& p1x, const double& p1y, const double& p2x, const double& p2y) : p1_(p1x, p1y), p2_(p2x, p2y) {}
+Rectangle::Rectangle(const point_t& p1, const point_t& p2) : p1_(p1), p2_(p2) {}
 Rectangle::Rectangle(const Rectangle& rect) : p1_(rect.p1_), p2_(rect.p2_) {}
 
 void Rectangle::setP1(const point_t& p1)
@@ -46,6 +46,15 @@ point_t Rectangle::getP2()const
 void Rectangle::print()const
 {
 	std::cout << this;
+}
+
+void Rectangle::cleanValue(const int k)
+{
+	p1_.x = std::round(p1_.x * std::pow(10, k)) / std::pow(10, k);
+	p1_.y = std::round(p1_.y * std::pow(10, k)) / std::pow(10, k);
+	p2_.x = std::round(p2_.x * std::pow(10, k)) / std::pow(10, k);
+	p2_.y = std::round(p2_.y * std::pow(10, k)) / std::pow(10, k);
+	return;
 }
 
 std::string Rectangle::getName()const
@@ -120,6 +129,20 @@ Shape* Rectangle::clone()const
 	return ptr;
 }
 
+bool Rectangle::checkRectangle()const
+{
+	if (p1_.x == p2_.x || p1_.y == p2_.y)
+	{
+		system("cls");
+		std::cerr << "			!!!ERROR!!!\n	Invalid data, two points can't lie on the same line: \n";
+		this->print();
+		system("pause");
+		system("cls");
+		return 0;
+	}
+	return 1;
+}
+
 point_t Rectangle::getCenter()const
 {
 	point_t buf;
@@ -142,13 +165,4 @@ point_t Rectangle::getCenter()const
 		buf.y = p1_.y + (height * 0.5);
 	}
 	return buf;
-}
-
-void Rectangle::checkRectangle()const
-{
-	if (p1_.x == p2_.x || p1_.y == p2_.y)
-	{
-		std::cerr << "\n	Invalid data, two points can't lie on the same line\n";
-		return;
-	}
 }

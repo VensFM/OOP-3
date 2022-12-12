@@ -21,6 +21,7 @@ public:
 	double getHeight()const;
 
 	void print()const;
+	void cleanValue(const int k);
 	std::string getName()const override;
 	double getArea()const override;
 	rectangle_t getFrameRect()const override;
@@ -29,6 +30,7 @@ public:
 	void scale(const double& k)override;
 	void scale(const point_t& p, const double& k)override;
 	Shape* clone()const override;
+	bool checkRectapezium()const;
 private:
 	point_t pos_;
 	double lowerBase_;
@@ -36,5 +38,4 @@ private:
 	double height_;
 
 	point_t getCenter()const;
-	void checkRectapezium()const;
 };

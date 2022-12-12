@@ -13,6 +13,8 @@ public:
 
 	void add(const int& i, Shape* newShape);
 	void print()const;
+	bool isEmpty(const int k)const;
+	void sort();
 	std::string getName()const override;
 	double getArea()const override;
 	rectangle_t getFrameRect()const override;

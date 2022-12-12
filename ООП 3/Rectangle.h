@@ -18,6 +18,7 @@ public:
 	point_t getP2()const;
 
 	void print()const;
+	void cleanValue(const int k);
 	std::string getName()const override;
 	double getArea()const override;
 	rectangle_t getFrameRect()const override;
@@ -26,10 +27,10 @@ public:
 	void scale(const double& k)override;
 	void scale(const point_t& p, const double& k)override;
 	Shape* clone()const override;
+	bool checkRectangle()const;
 private:
 	point_t p1_;
 	point_t p2_;
 
 	point_t getCenter()const;
-	void checkRectangle()const;
 };

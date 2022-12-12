@@ -2,12 +2,10 @@
 
 std::ostream& operator << (std::ostream& stream, const Shape* shape)
 {
-	point_t buf = shape->getFrameRect().pos;
-	double height = shape->getFrameRect().height;
-	double width = shape->getFrameRect().width;
+	rectangle_t buf = shape->getFrameRect();
 	stream << shape->getName() << "  Area: " << std::round(shape->getArea());
-	stream << "  Left bottom point: (" << std::round((buf.x - 0.5 * width)*10)/10 << ", " << std::round((buf.y - 0.5 * height)*10)/10;
-	stream << ")  Right top point: (" << std::round((buf.x + 0.5 * width)*10)/10 << ", " << std::round((buf.y + 0.5 * height)*10)/10<<")\n";
+	stream << "  Left bottom point: (" << std::round((buf.pos.x - 0.5 * buf.width)*10)/10 << ", " << std::round((buf.pos.y - 0.5 * buf.height)*10)/10;
+	stream << ")  Right top point: (" << std::round((buf.pos.x + 0.5 * buf.width)*10)/10 << ", " << std::round((buf.pos.y + 0.5 * buf.height)*10)/10<<")\n";
 	return stream;
 }
 
