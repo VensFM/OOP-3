@@ -43,11 +43,6 @@ point_t Rectangle::getP2()const
 	return p2_;
 }
 
-void Rectangle::print()const
-{
-	std::cout << this;
-}
-
 void Rectangle::cleanValue(const int k)
 {
 	p1_.x = std::round(p1_.x * std::pow(10, k)) / std::pow(10, k);
@@ -125,8 +120,7 @@ void Rectangle::scale(const point_t& p, const double& k)
 
 Shape* Rectangle::clone()const 
 {
-	Shape* ptr = new Rectangle(this->p1_, this->p2_);
-	return ptr;
+	return new Rectangle(this->p1_, this->p2_);
 }
 
 bool Rectangle::checkRectangle()const
@@ -134,8 +128,7 @@ bool Rectangle::checkRectangle()const
 	if (p1_.x == p2_.x || p1_.y == p2_.y)
 	{
 		system("cls");
-		std::cerr << "			!!!ERROR!!!\n	Invalid data, two points can't lie on the same line: \n";
-		this->print();
+		std::cerr << "			!!!ERROR!!!\n	Invalid data, two points can't lie on the same line:\n" << *this << " \n";
 		system("pause");
 		system("cls");
 		return 0;

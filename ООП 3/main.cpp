@@ -1,24 +1,18 @@
+#include <fstream> 
 #include "Shape.h"
+#include "utils.h"
 #include "Rectangle.h"
 #include "Rectapezium.h"
 #include "CompositeShape.h"
-#include <fstream> 
 
 const std::string error_open = ", not open";
-const std::string composite_end_enter = ", end of composite figure not found";
 const int N = 20;
 
-void fixString(std::string& str);
-void reloadStream(std::istream& stream);
-void failEnter(std::istream& stream);
-void failEnterForComposite(std::istream& stream);
-bool getDouble(std::istream& stream, double&  x);
-bool getPoint(std::istream& stream, point_t&  x);
 Shape* getRectangle(std::istream& stream);
 Shape* getRectapezium(std::istream& stream);
 Shape* getComposite(std::istream& stream);
 void sort(const int& size, Shape** ptr);
-void printComposite(const int& size, Shape** ptr);
+void printArray(const int& size, Shape** ptr);
 
 int main()
 {
@@ -76,73 +70,10 @@ int main()
 		std::cerr << "Error: fail " << error << "\n";
 		return -1;
 	}
+	printArray(i, arr);
 	in.close();
 	return 0;
 } 
-
-void fixString(std::string& str)
-{
-	while (str[0] == '\n')
-	{
-		str.erase(0, 1);
-	}
-	return;
-}
-
-void reloadStream(std::istream& stream)
-{
-	stream.clear();
-	stream.sync();
-	return;
-}
-
-void failEnter(std::istream& stream)
-{
-	std::string buf;
-	getline(stream, buf, '\n');
-	return;
-}
-
-void failEnterForComposite(std::istream& stream)
-{
-	std::string buf;
-	while (buf != "COMPLEXEND")
-	{
-		if (stream.eof())
-		{
-			throw composite_end_enter;
-		}
-		getline(stream, buf, '\n');
-	}
-	return;
-}
-
-bool getDouble(std::istream& stream, double& x)
-{
-	if (stream.peek() == '\n')
-	{
-		return 0;
-	}
-	stream >> x;
-	if (stream.fail())
-	{
-		reloadStream(stream);
-		return 0;
-	}
-	return 1;
-}
-
-bool getPoint(std::istream& stream, point_t& point)
-{
-	if (getDouble(stream, point.x))
-	{
-		if (getDouble(stream, point.y))
-		{
-			return 1;
-		}
-	}
-	return 0;
-}
 
 Shape* getRectangle(std::istream& stream)
 {
@@ -279,6 +210,7 @@ Shape* getComposite(std::istream& stream)
 		failEnterForComposite(stream);
 		return NULL;
 	}
+	composite.setSize(k);
 	if (!composite.isEmpty(0))
 	{
 		return composite.clone();
@@ -303,10 +235,10 @@ void sort(const int& size, Shape** ptr)
 	}
 }
 
-void printComposite(const int& size, Shape** ptr)
+void printArray(const int& size, Shape** ptr)
 {
 	for (int i = 0; i < size; ++i)
 	{
-		std::cout << i + 1 << ") "<<ptr[i]<<"\n";
+		std::cout << i + 1 << ") "<<*ptr[i]<<"\n";
 	}
 }

@@ -8,7 +8,7 @@ CompositeShape::CompositeShape(const CompositeShape& cShape)
 	this->ptr_ = new Shape * [size_];
 	for (int i = 0; i < size_; ++i)
 	{
-		this->ptr_[i] = cShape.ptr_[i];
+		this->ptr_[i] = cShape.ptr_[i]->clone();
 	}
 }
 //CompositeShape::CompositeShape(CompositeShape&& cShape)
@@ -18,15 +18,7 @@ CompositeShape::CompositeShape(const CompositeShape& cShape)
 //	cShape.size_ = 0;
 //	cShape.ptr_ = nullptr;
 //}
-CompositeShape::CompositeShape(const CompositeShape* cShape)
-{
-	this->size_ = cShape->size_;
-	this->ptr_ = new Shape * [size_];
-	for (int i = 0; i < size_; ++i)
-	{
-		this->ptr_[i] = cShape->ptr_[i];
-	}
-}
+
 CompositeShape::~CompositeShape()
 {
 	if (ptr_ != nullptr)
@@ -73,6 +65,11 @@ void CompositeShape::sort()
 			}
 		}
 	}
+}
+
+void CompositeShape::setSize(const int k)
+{
+	size_ = k;
 }
 
 std::string CompositeShape::getName()const
@@ -182,5 +179,5 @@ void CompositeShape::scale(const point_t& p, const double& k)
 
 Shape* CompositeShape::clone()const
 {
-	return new CompositeShape(this);
+	return new CompositeShape(*this);
 }

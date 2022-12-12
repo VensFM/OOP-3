@@ -144,6 +144,7 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Rectapezium.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base-types.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Rectapezium.h" />
     <ClInclude Include="Shape.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />

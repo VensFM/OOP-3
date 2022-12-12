@@ -8,13 +8,13 @@ public:
 	CompositeShape(const int& size);
 	CompositeShape(const CompositeShape& cShape);
 	/*CompositeShape(CompositeShape&& cShape);*/
-	CompositeShape(const CompositeShape* cShape);
 	~CompositeShape();
 
 	void add(const int& i, Shape* newShape);
 	void print()const;
 	bool isEmpty(const int k)const;
 	void sort();
+	void setSize(const int k);
 	std::string getName()const override;
 	double getArea()const override;
 	rectangle_t getFrameRect()const override;

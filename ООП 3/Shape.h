@@ -16,6 +16,6 @@ public:
 	virtual void scale(const double& k) = 0;
 	virtual void scale(const point_t& p, const double& k) = 0;
 	virtual Shape* clone()const = 0;
-	friend std::ostream& operator << (std::ostream& stream, const Shape* shape);
-	bool operator < (const Shape* shape);
+	friend std::ostream& operator << (std::ostream& stream, const Shape& shape);
+	bool operator < (const Shape& shape);
 };

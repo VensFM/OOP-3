@@ -71,11 +71,6 @@ double Rectapezium::getHeight()const
 	return height_;
 }
 
-void Rectapezium::print()const
-{
-	std::cout << this;
-}
-
 void Rectapezium::cleanValue(const int k)
 {
 	pos_.x = std::round(pos_.x * std::pow(10, k)) / std::pow(10, k);
@@ -168,8 +163,7 @@ void Rectapezium::scale(const point_t& p, const double& k)
 
 Shape* Rectapezium::clone()const
 {
-	Shape* ptr = new Rectapezium(this->pos_, this->lowerBase_, this->upperBase_, this->height_);
-	return ptr;
+	return new Rectapezium(this->pos_, this->lowerBase_, this->upperBase_, this->height_);
 }
 
 bool Rectapezium::checkRectapezium()const
@@ -177,8 +171,7 @@ bool Rectapezium::checkRectapezium()const
 	if (lowerBase_ == 0 || upperBase_ == 0 || height_ == 0)
 	{
 		system("cls");
-		std::cerr << "			!!!ERROR!!!\n	Invalid data, last three values can't be zero: \n";
-		this->print();
+		std::cerr << "			!!!ERROR!!!\n	Invalid data, last three values can't be zero:\n"<< *this << "\n";
 		system("pause");
 		system("cls");
 		return 0;
@@ -186,8 +179,7 @@ bool Rectapezium::checkRectapezium()const
 	if ((lowerBase_ < 0 && upperBase_ > 0) || (lowerBase_ > 0 && upperBase_ < 0))
 	{
 		system("cls");
-		std::cerr << "			!!!ERROR!!!\n	Invalid data, upperBase and lowerBase must be of the same character: \n";
-		this->print();
+		std::cerr << "			!!!ERROR!!!\n	Invalid data, upperBase and lowerBase must be of the same character:\n" << *this << " \n";
 		system("pause");
 		system("cls");
 		return 0;
