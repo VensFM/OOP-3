@@ -7,7 +7,7 @@ public:
 	CompositeShape();
 	CompositeShape(const int& size);
 	CompositeShape(const CompositeShape& cShape);
-	/*CompositeShape(CompositeShape&& cShape);*/
+	CompositeShape(CompositeShape&& cShape) noexcept;
 	~CompositeShape();
 
 	void add(const int& i, Shape* newShape);

@@ -43,15 +43,6 @@ point_t Rectangle::getP2()const
 	return p2_;
 }
 
-void Rectangle::cleanValue(const int k)
-{
-	p1_.x = std::round(p1_.x * std::pow(10, k)) / std::pow(10, k);
-	p1_.y = std::round(p1_.y * std::pow(10, k)) / std::pow(10, k);
-	p2_.x = std::round(p2_.x * std::pow(10, k)) / std::pow(10, k);
-	p2_.y = std::round(p2_.y * std::pow(10, k)) / std::pow(10, k);
-	return;
-}
-
 std::string Rectangle::getName()const
 {
 	return "RECTANGLE";

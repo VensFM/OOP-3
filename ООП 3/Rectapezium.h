@@ -20,7 +20,6 @@ public:
 	double getUpperBase()const;
 	double getHeight()const;
 
-	void cleanValue(const int k);
 	std::string getName()const override;
 	double getArea()const override;
 	rectangle_t getFrameRect()const override;

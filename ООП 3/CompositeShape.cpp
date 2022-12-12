@@ -11,17 +11,17 @@ CompositeShape::CompositeShape(const CompositeShape& cShape)
 		this->ptr_[i] = cShape.ptr_[i]->clone();
 	}
 }
-//CompositeShape::CompositeShape(CompositeShape&& cShape)
-//{
-//	this->size_ = cShape.size_;
-//	this->ptr_ = cShape.ptr_;
-//	cShape.size_ = 0;
-//	cShape.ptr_ = nullptr;
-//}
+CompositeShape::CompositeShape(CompositeShape&& cShape) noexcept
+{
+	this->size_ = cShape.size_;
+	this->ptr_ = cShape.ptr_;
+	cShape.size_ = 0;
+	cShape.ptr_ = NULL;
+}
 
 CompositeShape::~CompositeShape()
 {
-	if (ptr_ != nullptr)
+	if (ptr_ != NULL)
 	{
 		for (int i = 0; i < size_; ++i)
 		{
@@ -89,6 +89,10 @@ double CompositeShape::getArea()const
 
 rectangle_t CompositeShape::getFrameRect()const
 {
+	if (ptr_ == NULL)
+	{
+		return { 0,0, {0,0} };
+	}
 	rectangle_t shapeRect = ptr_[0]->getFrameRect();
 	if (size_ < 1)
 	{
@@ -123,15 +127,17 @@ rectangle_t CompositeShape::getFrameRect()const
 	}
 	width = right - left;
 	height = top - bottom;
-	pos.x = width * 0.5;
-	pos.y = height * 0.5;
+	pos.x = right - (width * 0.5);
+	pos.y = top - (height * 0.5);
 	return { width, height, pos };
 }
 
 void CompositeShape::move(const point_t& pos)
 {
-	point_t lastPos = getFrameRect().pos;
-	move(lastPos.x - pos.x, lastPos.y - pos.y);
+	for(int i = 0; i < size_; i++)
+	{
+		ptr_[i]->move(pos);
+	}
 }
 
 void CompositeShape::move(const double& x, const double& y)

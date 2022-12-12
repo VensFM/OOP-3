@@ -41,6 +41,11 @@ void failEnterForComposite(std::istream& stream)
 	return;
 }
 
+void cleanValue(double& x,int k)
+{
+	x = std::round(x * std::pow(10, k)) / pow(10, k);
+}
+
 bool getDouble(std::istream& stream, double& x)
 {
 	if (stream.peek() == '\n')
@@ -53,6 +58,7 @@ bool getDouble(std::istream& stream, double& x)
 		reloadStream(stream);
 		return 0;
 	}
+	cleanValue(x, 1);
 	return 1;
 }
 

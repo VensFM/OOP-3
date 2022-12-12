@@ -17,7 +17,6 @@ public:
 	point_t getP1()const;
 	point_t getP2()const;
 
-	void cleanValue(const int k);
 	std::string getName()const override;
 	double getArea()const override;
 	rectangle_t getFrameRect()const override;

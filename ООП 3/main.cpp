@@ -6,6 +6,7 @@
 #include "CompositeShape.h"
 
 const std::string error_open = ", not open";
+const std::string invalid_test_conctructor = ", composite shape not found";
 const int N = 20;
 
 Shape* getRectangle(std::istream& stream);
@@ -16,7 +17,9 @@ void printArray(const int& size, Shape** ptr);
 
 int main()
 {
-	int i = 0;
+	point_t bufP;
+	double bufD;
+	int i = 0, k = N + 1;
 	std::string shape;
 	std::string inFileName = "";
 	std::ifstream in;
@@ -59,18 +62,85 @@ int main()
 					++i;
 				}
 			}
+			else if (shape == "MOVE")
+			{
+				if (!getPoint(in, bufP))
+				{
+					failEnter(in);
+					continue;
+				}
+				system("cls");
+				std::cout << "	OOP-3 Test move...\n\n Shapes befor moving: \n";
+				printArray(i, arr);
+				for (int j = 0; j < i; ++j)
+				{
+					arr[j]->move(bufP.x, bufP.y);
+				}
+				std::cout << " Shapes after moving along the abscissa and ordinate axes x = "<<bufP.x<<", y = "<<bufP.y<<" : \n";
+				printArray(i, arr);
+				for (int j = 0; j < i; ++j)
+				{
+					arr[j]->move(bufP);
+				}
+				std::cout << " Shapes after moving to a specific point (" << bufP.x << ", " << bufP.y << ") : \n";
+				printArray(i, arr);
+				system("pause");
+				system("cls");
+			}
+			else if (shape == "SCALE")
+			{
+				if (!getPoint(in, bufP))
+				{
+					failEnter(in);
+					continue;
+				}
+				if (!getDouble(in, bufD))
+				{
+					failEnter(in);
+					continue;
+				}
+				system("cls");
+				std::cout << "	OOP-3 Test scale...\n\n Shapes befor scaling: \n";
+				printArray(i, arr);
+				for (int j = 0; j < i; ++j)
+				{
+					arr[j]->scale(bufP, bufD);
+				}
+				std::cout << " Shapes after isotropic scaling, point ("<<bufP.x<<", "<<bufP.y<<") coef = " << bufD <<" : \n";
+				printArray(i, arr);
+				system("pause");
+				system("cls");
+			}
 			else
 			{
 				failEnter(in);
 			}
 		}
+		system("cls");
+		std::cout << "	OOP-3 Test sort...\n\n Shapes befor sorting: \n";
+		printArray(i, arr);
+		sort(i, arr);
+		std::cout << " Shapes after sorting: \n";
+		printArray(i, arr);
+		system("pause");
+		system("cls");
+		std::cout << "	OOP-3 Test move constructor...\n\n";
+		CompositeShape ex1(i);
+		for (int j = 0; j < i; ++j)
+		{
+			ex1.add(j, arr[j]);
+		}
+		std::cout << " Shapes befor move constructor: \n1) "<<ex1<<"\n2) Not yet announced\n\n";
+		CompositeShape ex2 = std::move(ex1);
+		std::cout << " Shapes after move constructor: \n1) "<< ex1<<"\n2) "<<ex2<<"\n";
+		system("pause");
+		system("cls");
 	}
 	catch (const std::string& error)
 	{
 		std::cerr << "Error: fail " << error << "\n";
 		return -1;
 	}
-	printArray(i, arr);
 	in.close();
 	return 0;
 } 
@@ -95,7 +165,6 @@ Shape* getRectangle(std::istream& stream)
 	}
 	stream.ignore();
 	Rectangle rect(p1, p2);
-	rect.cleanValue(1);
 	if (rect.checkRectangle())
 	{
 		return rect.clone();
@@ -134,7 +203,6 @@ Shape* getRectapezium(std::istream& stream)
 	}
 	stream.ignore();
 	Rectapezium rect(p, lowerBase, upperBase, height);
-	rect.cleanValue(1);
 	if (rect.checkRectapezium())
 	{
 		return rect.clone();
@@ -239,6 +307,6 @@ void printArray(const int& size, Shape** ptr)
 {
 	for (int i = 0; i < size; ++i)
 	{
-		std::cout << i + 1 << ") "<<*ptr[i]<<"\n";
+		std::cout <<"	"<< i + 1 << ") "<<*ptr[i]<<"\n";
 	}
 }

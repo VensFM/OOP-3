@@ -71,15 +71,6 @@ double Rectapezium::getHeight()const
 	return height_;
 }
 
-void Rectapezium::cleanValue(const int k)
-{
-	pos_.x = std::round(pos_.x * std::pow(10, k)) / std::pow(10, k);
-	pos_.y = std::round(pos_.y * std::pow(10, k)) / std::pow(10, k);
-	lowerBase_ = std::round(lowerBase_ * std::pow(10, k)) / std::pow(10, k);
-	upperBase_ = std::round(upperBase_ * std::pow(10, k)) / std::pow(10, k);
-	height_ = std::round(height_ * std::pow(10, k)) / std::pow(10, k);
-}
-
 std::string Rectapezium::getName()const
 {
 	return "RECTAPEZIUM";
@@ -122,8 +113,11 @@ rectangle_t Rectapezium::getFrameRect()const
 
 void Rectapezium::move(const point_t& newPos)
 {
-	pos_.x = newPos.x;
-	pos_.y = newPos.y;
+	point_t buf = this->getCenter();
+	buf.x -= newPos.x;
+	buf.y -= newPos.y;
+	pos_.x -= buf.x;
+	pos_.y -= buf.y;
 }
 
 void Rectapezium::move(const double& moveX, const double& moveY)
