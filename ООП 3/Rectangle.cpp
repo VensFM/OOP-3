@@ -50,7 +50,7 @@ std::string Rectangle::getName()const
 
 double Rectangle::getArea()const
 {
-	return 0.5 * std::abs(p1_.x - p2_.x) * std::abs(p1_.y - p2_.y);
+	return std::abs(p1_.x - p2_.x) * std::abs(p1_.y - p2_.y);
 }
 
 rectangle_t Rectangle::getFrameRect()const
