@@ -1,7 +1,7 @@
 #include "Rectangle.h"
 
 Rectangle::Rectangle() : p1_(), p2_() {}
-Rectangle::Rectangle(const double& p1x, const double& p1y, const double& p2x, const double& p2y) : p1_(p1x, p1y), p2_(p2x, p2y) {}
+Rectangle::Rectangle(const double& p1x, const double& p1y, const double& p2x, const double& p2y) : p1_({ p1x, p1y }), p2_({ p2x, p2y }) {}
 Rectangle::Rectangle(const point_t& p1, const point_t& p2) : p1_(p1), p2_(p2) {}
 Rectangle::Rectangle(const Rectangle& rect) : p1_(rect.p1_), p2_(rect.p2_) {}
 

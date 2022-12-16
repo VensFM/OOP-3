@@ -1,7 +1,7 @@
 #include "CompositeShape.h"
 
-CompositeShape::CompositeShape() : ptr_(nullptr), size_(0) {}
-CompositeShape::CompositeShape(const int& size) : size_(size), ptr_(new Shape* [size] {nullptr}) {}
+CompositeShape::CompositeShape() : ptr_(NULL), size_(0) {}
+CompositeShape::CompositeShape(const int& size) : size_(size), ptr_(new Shape* [size] {NULL}) {}
 CompositeShape::CompositeShape(const CompositeShape& cShape)
 {
 	this->size_ = cShape.size_;

@@ -6,7 +6,7 @@ Rectapezium::Rectapezium() :
 	upperBase_(0.0), 
 	height_(0.0) {}
 Rectapezium::Rectapezium(const double& x, const double& y, const double& lowerBase, const double& upperBase, const double& height) : 
-	pos_(x, y), 
+	pos_({ x, y }),
 	lowerBase_(lowerBase), 
 	upperBase_(upperBase), 
 	height_(height) {}
