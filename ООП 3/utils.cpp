@@ -4,15 +4,6 @@
 
 const std::string composite_end_enter = ", end of composite figure not found";
 
-void fixString(std::string& str)
-{
-	while (str[0] == '\n')
-	{
-		str.erase(0, 1);
-	}
-	return;
-}
-
 void reloadStream(std::istream& stream)
 {
 	stream.clear();
@@ -50,6 +41,7 @@ bool getDouble(std::istream& stream, double& x)
 {
 	if (stream.peek() == '\n')
 	{
+		stream.ignore();
 		return 0;
 	}
 	stream >> x;

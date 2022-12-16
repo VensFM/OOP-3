@@ -36,8 +36,7 @@ int main()
 		}
 		while (!in.eof())
 		{
-			getline(in, shape, ' ');
-			fixString(shape);
+			in >> shape;
 			if (shape == "RECTANGLE")
 			{
 				arr[i]=getRectangle(in);
@@ -226,8 +225,7 @@ Shape* getComposite(std::istream& stream)
 	CompositeShape composite(count);
 	for (int j = 0; j < count; ++j)
 	{
-		getline(stream, buf, ' ');
-		fixString(buf);
+		stream>>buf;
 		if (buf == "")
 		{
 			stream.ignore();
@@ -270,8 +268,7 @@ Shape* getComposite(std::istream& stream)
 	}
 	if (helper != true)
 	{
-		getline(stream, buf, '\n');
-		fixString(buf);
+		stream >> buf;
 	}
 	if (buf != "COMPLEXEND")
 	{
@@ -293,7 +290,7 @@ void sort(const int& size, Shape** ptr)
 	{
 		for (int j = size - 1; j > i; --j)
 		{
-			if (ptr[j] < ptr[j - 1])
+			if (ptr[j]->getArea() < ptr[j - 1]->getArea())
 			{
 				buf = ptr[j];
 				ptr[j] = ptr[j-1];
