@@ -290,7 +290,7 @@ void sort(const int& size, Shape** ptr)
 	{
 		for (int j = size - 1; j > i; --j)
 		{
-			if (ptr[j]->getArea() < ptr[j - 1]->getArea())
+			if (*ptr[j] < *ptr[j - 1])
 			{
 				buf = ptr[j];
 				ptr[j] = ptr[j-1];
