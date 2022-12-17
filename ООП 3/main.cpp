@@ -226,12 +226,6 @@ Shape* getComposite(std::istream& stream)
 	for (int j = 0; j < count; ++j)
 	{
 		stream>>buf;
-		if (buf == "")
-		{
-			stream.ignore();
-			--j;
-			continue;
-		}
 		if (buf == "RECTANGLE")
 		{
 			composite.add(k, getRectangle(stream));
@@ -275,7 +269,6 @@ Shape* getComposite(std::istream& stream)
 		failEnterForComposite(stream);
 		return NULL;
 	}
-	composite.setSize(k);
 	if (!composite.isEmpty(0))
 	{
 		return composite.clone();

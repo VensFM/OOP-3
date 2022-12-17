@@ -8,6 +8,7 @@ public:
 	Rectapezium(const double& x, const double& y, const double& lowerBase, const double& upperBase, const double& height);
 	Rectapezium(const point_t& p, const double& lowerBase, const double& upperBase, const double& height);
 	Rectapezium(const Rectapezium& rect);
+	~Rectapezium() = default;
 
 	void setPos(const point_t& p);
 	void setPos(const double& x, const double& y);

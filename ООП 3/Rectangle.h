@@ -8,6 +8,7 @@ public:
 	Rectangle(const double& p1x, const double& p1y, const double& p2x, const double& p2y);
 	Rectangle(const point_t& p1, const point_t& p2);
 	Rectangle(const Rectangle& rect);
+	~Rectangle() = default;
 
 	void setP1(const point_t& p1);
 	void setP1(const double& x, const double& y);
