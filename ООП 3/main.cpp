@@ -269,6 +269,7 @@ Shape* getComposite(std::istream& stream)
 		failEnterForComposite(stream);
 		return NULL;
 	}
+	composite.setSize(k);
 	if (!composite.isEmpty(0))
 	{
 		return composite.clone();
